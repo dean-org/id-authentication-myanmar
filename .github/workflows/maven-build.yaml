@@ -103,11 +103,7 @@ jobs:
 
     - name: Build with Maven
      # run: cd ${{ inputs.SERVICE_LOCATION }} && mvn -U -B package -Dmaven.wagon.http.retryHandler.count=2 --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
-      run: cd ${{ inputs.SERVICE_LOCATION }} && mvn -U -B package \
-         -Dmaven.test.skip=true \
-         -Dmaven.wagon.http.retryHandler.count=2 \
-         --file pom.xml \
-         -s $GITHUB_WORKSPACE/settings.xml
+       run: cd ${{ inputs.SERVICE_LOCATION }} && mvn -U -B package -DskipTests -Dmaven.wagon.http.retryHandler.count=2 --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
 
     - name: Debug - List all JARs and permissions
       if: ${{ !contains(github.ref, 'master') && !contains(github.ref, 'main') }}
