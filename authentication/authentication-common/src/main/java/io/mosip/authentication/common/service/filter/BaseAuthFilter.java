@@ -175,6 +175,7 @@ public abstract class BaseAuthFilter extends BaseIDAFilter {
 	private void validateSignature(String signature, ResettableStreamHttpServletRequest requestWrapper)
 			throws IdAuthenticationAppException {
 		try {
+			mosipLogger.info("Signature Header received: {}", signature);
 			if (isSignatureVerificationRequired()) {
 				if (StringUtils.isEmpty(signature)) {
 					mosipLogger.error(IdAuthCommonConstants.SESSION_ID, EVENT_FILTER, BASE_AUTH_FILTER,
@@ -256,3 +257,4 @@ public abstract class BaseAuthFilter extends BaseIDAFilter {
 		return IdAuthSecurityManager.generateHashAndDigestAsPlainText(request.getBytes(StandardCharsets.UTF_8));
 	}
 }
+
